@@ -29,23 +29,54 @@ export interface Skill {
 export const projects: Project[] = [
   {
     title: 'LaneGuard: AI-Powered Driver Safety System',
-    description: 'Built a lane departure warning system achieving 92% detection accuracy on over 500 hours of dashcam data.',
-    longDescription: 'A comprehensive AI-powered driver safety system that uses computer vision to detect lane departures in real-time. Built with TensorFlow and YOLOv5, the system processes dashcam footage at 30 FPS and issues safety alerts within 200ms of lane drift detection.',
-    techStack: ['Python', 'TensorFlow', 'YOLOv5', 'OpenCV', 'Raspberry Pi', 'Canny Edge Detection'],
-    achievements: ['92% detection accuracy', '30 FPS processing', '200ms alert latency', '40% false alarm reduction'],
-    period: 'June 2024 - Aug. 2024',
+    description:
+      'Built a lane departure warning system in Python (TensorFlow, YOLOv5) achieving 92% detection accuracy on over 500 hours of dashcam data.',
+    longDescription:
+      'LaneGuard is a real-time driver safety system that detects lane departures using deep learning and computer vision. It combines TensorFlow and YOLOv5 for lane detection, running at 30 FPS with Canny edge detection and polynomial curve fitting. Temporal smoothing reduced false alerts by 40%, and deployment on a Raspberry Pi achieved 200ms response times for live safety warnings.',
+    techStack: [
+      'Python',
+      'TensorFlow',
+      'YOLOv5',
+      'OpenCV',
+      'Raspberry Pi',
+      'Canny Edge Detection',
+      'Polynomial Fitting'
+    ],
+    achievements: [
+      '92% detection accuracy',
+      '30 FPS real-time processing',
+      '40% false alarm reduction',
+      '200ms lane drift alert latency'
+    ],
+    period: 'June 2024 – Aug. 2024',
     links: {
       github: '#',
       demo: '#'
     }
   },
   {
-    title: 'Ho-Ho-Hacks: Multiplayer Mining Adventure Platform',
-    description: 'Architected distributed microservices supporting real-time gameplay for 15+ concurrent users with 70% engagement boost.',
-    longDescription: 'A full-stack multiplayer mining adventure game built with SpringBoot microservices. Features real-time multiplayer functionality via WebSockets, JWT authentication, and MySQL database integration. Deployed on AWS EC2 with Docker containerization.',
-    techStack: ['Java', 'SpringBoot', 'WebSockets', 'STOMP', 'MySQL', 'JWT', 'AWS EC2', 'Docker', 'REST API'],
-    achievements: ['15+ concurrent users', '70% engagement boost', '50+ simultaneous game sessions', 'Real-time multiplayer'],
-    period: 'Dec. 2023 - Mar. 2024',
+    title: 'Robotic 3D Printed Prosthetic Finger',
+    description:
+      'Prototyped a biomimetic prosthetic finger using 3D printing and EMG-based neural decoding with 95% classification precision.',
+    longDescription:
+      'A functional 3D-printed prosthetic finger designed to mimic natural motion and touch. Built with TPU/PLA composite materials and powered by a custom PyTorch CNN trained on EMG data and finger position images. The system uses Raspberry Pi–Arduino communication for sensor processing and achieves 100ms actuation latency with 95% recognition accuracy.',
+    techStack: [
+      'Python',
+      'PyTorch',
+      'OpenCV',
+      'NumPy',
+      'Pandas',
+      'Raspberry Pi',
+      'Arduino',
+      '3D Printing (TPU/PLA)'
+    ],
+    achievements: [
+      '95% classification precision',
+      '100ms response latency',
+      'Dual-material 3D printed prototype',
+      '1,000+ labeled training samples'
+    ],
+    period: 'Dec. 2023 – Mar. 2024',
     links: {
       github: '#',
       demo: '#'
@@ -114,7 +145,7 @@ export const skills: Skill[] = [
 
 export const personalInfo = {
   name: 'Ankit Rao',
-  title: 'CS and AI at UVA',
+  title: 'CS and DS at UVA',
   bio: 'Passionate about building innovative solutions at the intersection of computer science and artificial intelligence.',
   email: 'ankrao26@gmail.com',
   phone: '571-577-2416',

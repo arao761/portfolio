@@ -22,7 +22,7 @@ export class BootingScreenComponent implements OnInit {
     'Loading projects...',
     'Loading experience...',
     'System ready.',
-    'Welcome.'
+    "Welcome to Ankit's portfolio."
   ];
 
   ngOnInit() {
