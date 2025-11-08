@@ -1,0 +1,87 @@
+<section id="projects" class="py-32 px-4 md:px-8 relative">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl md:text-7xl font-bold mb-20 text-center">
+      <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        Projects
+      </span>
+    </h2>
+
+    @for (project of projects; track project.title; let i = $index) {
+      <div 
+        class="mb-32 project-section section-reveal"
+        [attr.data-project-index]="i"
+        [class.opacity-100]="visibleProjects().has(i)"
+        [class.opacity-0]="!visibleProjects().has(i)"
+        [class.translate-y-0]="visibleProjects().has(i)"
+        [class.translate-y-10]="!visibleProjects().has(i)"
+        [class.transition-all]="true"
+        [class.duration-700]="true">
+        
+        <!-- Alternating layout: even = left visual, right content; odd = right visual, left content -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Visual/Image side -->
+          <div [class]="i % 2 === 0 ? 'order-2 lg:order-1 relative' : 'order-2 lg:order-2 relative'">
+            <div class="relative h-96 rounded-2xl overflow-hidden group">
+              <!-- Gradient background with animated pattern -->
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-cyan-600/20 to-blue-800/20"></div>
+              <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
+              
+              <!-- Project title overlay -->
+              <div class="absolute inset-0 flex items-center justify-center p-8">
+                <h3 class="text-4xl md:text-5xl font-bold text-white opacity-90 group-hover:opacity-100 transition-opacity">
+                  {{ project.title.split(':')[0] }}
+                </h3>
+              </div>
+              
+              <!-- Hover effect -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+          </div>
+
+          <!-- Content side -->
+          <div [class]="i % 2 === 0 ? 'order-1 lg:order-2' : 'order-1 lg:order-1'">
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                  {{ project.title }}
+                </h3>
+                <p class="text-gray-400 text-lg mb-4">
+                  {{ project.description }}
+                </p>
+                <p class="text-gray-300 mb-6">
+                  {{ project.longDescription }}
+                </p>
+              </div>
+
+              <!-- Tech stack badges -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                @for (tech of project.techStack; track tech) {
+                  <span class="px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full text-sm text-blue-300 hover:bg-blue-500/20 hover:border-blue-500/50 transition-colors cursor-default">
+                    {{ tech }}
+                  </span>
+                }
+              </div>
+
+              <!-- Achievements -->
+              @if (project.achievements && project.achievements.length > 0) {
+                <div class="space-y-2">
+                  @for (achievement of project.achievements; track achievement) {
+                    <div class="flex items-center text-gray-400">
+                      <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>{{ achievement }}</span>
+                    </div>
+                  }
+                </div>
+              }
+
+              <!-- Period -->
+              <p class="text-sm text-gray-500 italic">{{ project.period }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

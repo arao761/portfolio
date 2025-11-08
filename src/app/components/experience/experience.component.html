@@ -1,0 +1,94 @@
+<section id="experience" class="py-32 px-4 md:px-8 relative bg-black/50">
+  <div class="max-w-6xl mx-auto section-reveal">
+    <h2 class="text-5xl md:text-7xl font-bold mb-20 text-center">
+      <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        Experience
+      </span>
+    </h2>
+
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-cyan-500 to-blue-500"></div>
+
+      <div class="space-y-12">
+        @for (exp of experiences; track exp.title; let i = $index) {
+          <div 
+            class="relative"
+            [attr.data-exp-index]="i"
+            [class.opacity-100]="visibleItems().has(i)"
+            [class.opacity-0]="!visibleItems().has(i)"
+            [class.translate-x-0]="visibleItems().has(i)"
+            [class.-translate-x-10]="!visibleItems().has(i)"
+            [class.transition-all]="true"
+            [class.duration-700]="true">
+            
+            <!-- Timeline dot -->
+            <div class="hidden md:block absolute left-8 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-black z-10"></div>
+
+            <!-- Content -->
+            <div class="md:ml-24 pl-8 md:pl-0">
+              <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6 md:p-8 hover:border-blue-500/50 transition-all cursor-pointer"
+                   (click)="toggleExpand(i)">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div class="flex-1">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">
+                      {{ exp.title }}
+                    </h3>
+                    <p class="text-xl text-blue-400 mb-1">
+                      {{ exp.company }}
+                    </p>
+                    <p class="text-gray-400 text-sm mb-2">
+                      {{ exp.location }}
+                    </p>
+                  </div>
+                  <div class="text-right mt-2 md:mt-0">
+                    <p class="text-gray-500 text-sm md:text-base">
+                      {{ exp.period }}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Tech stack tags -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  @for (tech of exp.techStack; track tech) {
+                    <span class="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-xs text-cyan-300">
+                      {{ tech }}
+                    </span>
+                  }
+                </div>
+
+                <!-- Expandable details -->
+                @if (isExpanded(i)) {
+                  <div class="mt-6 space-y-3 animate-fade-in">
+                    @for (desc of exp.description; track desc) {
+                      <p class="text-gray-300 leading-relaxed">
+                        {{ desc }}
+                      </p>
+                    }
+                  </div>
+                } @else {
+                  <p class="text-gray-400 text-sm mt-4">
+                    Click to expand details...
+                  </p>
+                }
+
+                <!-- Expand/collapse icon -->
+                <div class="mt-4 flex items-center text-gray-500 text-sm">
+                  <span>{{ isExpanded(i) ? 'Show less' : 'Show more' }}</span>
+                  <svg 
+                    class="w-5 h-5 ml-2 transition-transform"
+                    [class.rotate-180]="isExpanded(i)"
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
