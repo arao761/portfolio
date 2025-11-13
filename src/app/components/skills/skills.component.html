@@ -1,15 +1,21 @@
-<section id="skills" class="py-32 px-4 md:px-8 relative bg-black/50">
-  <div class="max-w-6xl mx-auto section-reveal">
-    <h2 class="text-5xl md:text-7xl font-bold mb-20 text-center">
-      <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+<section id="skills" class="py-16 md:py-20 px-6 md:px-8 relative">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section header -->
+    <div class="mb-16 md:mb-24" data-parallax="0.03">
+      <div class="inline-block px-4 py-2 rounded-full bg-light-bg-tertiary dark:bg-dark-bg-tertiary border border-light-border dark:border-dark-border mb-6">
+        <span class="text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary">Technical Expertise</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-light-text-primary dark:text-dark-text-primary mb-4">
         Skills
-      </span>
-    </h2>
+      </h2>
+      <div class="h-1 w-20 bg-gradient-to-r from-accent-primary dark:from-accent-secondary to-transparent"></div>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Skills grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-parallax="0.05">
       @for (skillCategory of skills; track skillCategory.category; let i = $index) {
-        <div 
-          class="skill-category"
+        <div
+          class="group relative card-spotlight"
           [attr.data-skill-index]="i"
           [class.opacity-100]="visibleSkills().has(i)"
           [class.opacity-0]="!visibleSkills().has(i)"
@@ -17,15 +23,40 @@
           [class.translate-y-10]="!visibleSkills().has(i)"
           [class.transition-all]="true"
           [class.duration-700]="true"
-          [style.animation-delay.ms]="i * 100">
-          
-          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-blue-500/50 transition-all">
-            <h3 class="text-2xl font-bold text-white mb-6">
-              {{ skillCategory.category }}
-            </h3>
-            <div class="flex flex-wrap gap-3">
+          (mouseenter)="onCardHover($event)">
+
+          <div class="relative bg-white dark:bg-dark-bg-secondary border border-light-border dark:border-dark-border rounded-2xl p-8 hover:border-accent-primary/30 dark:hover:border-accent-secondary/30 transition-all duration-300 hover:shadow-2xl h-full">
+            <!-- Category header -->
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-accent-primary/10 dark:bg-accent-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                @if (skillCategory.category === 'Languages') {
+                  <svg class="w-5 h-5 text-accent-primary dark:text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                } @else if (skillCategory.category === 'Frameworks/Libraries') {
+                  <svg class="w-5 h-5 text-accent-primary dark:text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                } @else if (skillCategory.category === 'Developer Tools') {
+                  <svg class="w-5 h-5 text-accent-primary dark:text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                } @else {
+                  <svg class="w-5 h-5 text-accent-primary dark:text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                }
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold text-light-text-primary dark:text-dark-text-primary">
+                {{ skillCategory.category }}
+              </h3>
+            </div>
+
+            <!-- Skills tags -->
+            <div class="flex flex-wrap gap-2">
               @for (item of skillCategory.items; track item) {
-                <span class="px-4 py-2 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-full text-sm text-blue-300 hover:from-blue-500/20 hover:to-cyan-500/20 hover:border-blue-500/50 hover:scale-105 transition-all cursor-default">
+                <span class="px-3 py-1.5 bg-light-bg-tertiary dark:bg-dark-bg-tertiary border border-light-border dark:border-dark-border rounded-lg text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:border-accent-primary dark:hover:border-accent-secondary hover:scale-105 transition-all duration-200 cursor-default">
                   {{ item }}
                 </span>
               }

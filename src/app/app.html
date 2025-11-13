@@ -1,19 +1,26 @@
+<!-- Booting Screen -->
 <app-booting-screen></app-booting-screen>
 
+<!-- Theme Toggle -->
+<app-theme-toggle></app-theme-toggle>
+
 @if (showContent()) {
-  <div class="portfolio-content relative">
-    <!-- Global animated background elements -->
+  <div class="portfolio-content relative min-h-screen">
+    <!-- Subtle background gradients for depth -->
     <div class="pointer-events-none fixed inset-0 -z-10">
-      <div class="absolute -top-40 -left-20 w-[40rem] h-[40rem] bg-gradient-to-br from-blue-500/20 via-cyan-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute -bottom-40 -right-32 w-[45rem] h-[45rem] bg-gradient-to-tr from-cyan-500/20 via-blue-400/10 to-transparent rounded-full blur-3xl animate-pulse" style="animation-delay: 1.2s"></div>
-      <div class="absolute inset-0 opacity-[0.06]" style="background-image: radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0); background-size: 22px 22px;"></div>
+      <!-- Light mode gradients -->
+      <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 via-purple-50 to-transparent rounded-full blur-3xl opacity-60 dark:opacity-0 transition-opacity duration-500" data-parallax="0.1"></div>
+      <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-emerald-50 via-blue-50 to-transparent rounded-full blur-3xl opacity-60 dark:opacity-0 transition-opacity duration-500" data-parallax="0.15"></div>
+
+      <!-- Dark mode gradients -->
+      <div class="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-gradient-to-br from-purple-900/20 via-blue-900/10 to-transparent rounded-full blur-3xl opacity-0 dark:opacity-100 transition-opacity duration-500" data-parallax="0.12"></div>
+      <div class="absolute bottom-1/3 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-blue-900/20 via-emerald-900/10 to-transparent rounded-full blur-3xl opacity-0 dark:opacity-100 transition-opacity duration-500" data-parallax="0.18"></div>
     </div>
 
-    <!-- Cursor glow -->
-    <div id="cursor-glow" class="pointer-events-none fixed w-40 h-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-2xl mix-blend-screen z-40"></div>
+    <!-- Main content sections -->
     <app-hero></app-hero>
-    <app-projects></app-projects>
     <app-experience></app-experience>
+    <app-projects></app-projects>
     <app-skills></app-skills>
     <app-contact></app-contact>
   </div>

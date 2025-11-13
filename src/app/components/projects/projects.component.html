@@ -1,87 +1,123 @@
-<section id="projects" class="py-32 px-4 md:px-8 relative">
+<section id="projects" class="py-16 md:py-20 px-6 md:px-8 relative">
   <div class="max-w-7xl mx-auto">
-    <h2 class="text-5xl md:text-7xl font-bold mb-20 text-center">
-      <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+    <!-- Section header -->
+    <div class="mb-16 md:mb-24" data-parallax="0.03">
+      <div class="inline-block px-4 py-2 rounded-full bg-light-bg-tertiary dark:bg-dark-bg-tertiary border border-light-border dark:border-dark-border mb-6">
+        <span class="text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary">Featured Work</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-light-text-primary dark:text-dark-text-primary mb-4">
         Projects
-      </span>
-    </h2>
+      </h2>
+      <div class="h-1 w-20 bg-gradient-to-r from-accent-primary dark:from-accent-secondary to-transparent"></div>
+    </div>
 
-    @for (project of projects; track project.title; let i = $index) {
-      <div 
-        class="mb-32 project-section section-reveal"
-        [attr.data-project-index]="i"
-        [class.opacity-100]="visibleProjects().has(i)"
-        [class.opacity-0]="!visibleProjects().has(i)"
-        [class.translate-y-0]="visibleProjects().has(i)"
-        [class.translate-y-10]="!visibleProjects().has(i)"
-        [class.transition-all]="true"
-        [class.duration-700]="true">
-        
-        <!-- Alternating layout: even = left visual, right content; odd = right visual, left content -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Visual/Image side -->
-          <div [class]="i % 2 === 0 ? 'order-2 lg:order-1 relative' : 'order-2 lg:order-2 relative'">
-            <div class="relative h-96 rounded-2xl overflow-hidden group">
-              <!-- Gradient background with animated pattern -->
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-cyan-600/20 to-blue-800/20"></div>
-              <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
-              
-              <!-- Project title overlay -->
-              <div class="absolute inset-0 flex items-center justify-center p-8">
-                <h3 class="text-4xl md:text-5xl font-bold text-white opacity-90 group-hover:opacity-100 transition-opacity">
-                  {{ project.title.split(':')[0] }}
-                </h3>
-              </div>
-              
-              <!-- Hover effect -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
-          </div>
+    <!-- Projects grid -->
+    <div class="grid grid-cols-1 gap-8" data-parallax="0.06">
+      @for (project of projects; track project.title; let i = $index) {
+        <div
+          class="group relative card-spotlight"
+          [attr.data-project-index]="i"
+          [class.opacity-100]="visibleProjects().has(i)"
+          [class.opacity-0]="!visibleProjects().has(i)"
+          [class.translate-y-0]="visibleProjects().has(i)"
+          [class.translate-y-10]="!visibleProjects().has(i)"
+          [class.transition-all]="true"
+          [class.duration-700]="true"
+          (mouseenter)="onCardHover($event)">
 
-          <!-- Content side -->
-          <div [class]="i % 2 === 0 ? 'order-1 lg:order-2' : 'order-1 lg:order-1'">
-            <div class="space-y-6">
-              <div>
-                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                  {{ project.title }}
-                </h3>
-                <p class="text-gray-400 text-lg mb-4">
-                  {{ project.description }}
-                </p>
-                <p class="text-gray-300 mb-6">
-                  {{ project.longDescription }}
-                </p>
-              </div>
+          <div class="relative bg-white dark:bg-dark-bg-secondary border border-light-border dark:border-dark-border rounded-2xl overflow-hidden hover:border-accent-primary/30 dark:hover:border-accent-secondary/30 transition-all duration-300 hover:shadow-2xl">
+            <!-- Content layout -->
+            <div class="grid lg:grid-cols-5 gap-0">
+              <!-- Left: Main content (3/5) -->
+              <div class="lg:col-span-3 p-8 md:p-10 space-y-6">
+                <!-- Project header -->
+                <div>
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-accent-primary/10 dark:bg-accent-secondary/10 flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-accent-primary dark:text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                    <span class="text-sm font-medium text-light-text-tertiary dark:text-dark-text-tertiary">{{ project.period }}</span>
+                  </div>
 
-              <!-- Tech stack badges -->
-              <div class="flex flex-wrap gap-2 mb-6">
-                @for (tech of project.techStack; track tech) {
-                  <span class="px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full text-sm text-blue-300 hover:bg-blue-500/20 hover:border-blue-500/50 transition-colors cursor-default">
-                    {{ tech }}
-                  </span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-light-text-primary dark:text-dark-text-primary mb-3 group-hover:text-accent-primary dark:group-hover:text-accent-secondary transition-colors">
+                    {{ project.title }}
+                  </h3>
+
+                  <p class="text-base text-light-text-secondary dark:text-dark-text-secondary leading-relaxed mb-4">
+                    {{ project.longDescription }}
+                  </p>
+                </div>
+
+                <!-- Tech stack -->
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-light-text-tertiary dark:text-dark-text-tertiary mb-3">Technologies</p>
+                  <div class="flex flex-wrap gap-2">
+                    @for (tech of project.techStack.slice(0, 6); track tech) {
+                      <span class="px-3 py-1.5 bg-light-bg-tertiary dark:bg-dark-bg-tertiary border border-light-border dark:border-dark-border rounded-lg text-xs font-medium text-light-text-secondary dark:text-dark-text-secondary hover:border-accent-primary dark:hover:border-accent-secondary transition-colors">
+                        {{ tech }}
+                      </span>
+                    }
+                    @if (project.techStack.length > 6) {
+                      <span class="px-3 py-1.5 text-xs font-medium text-light-text-tertiary dark:text-dark-text-tertiary">
+                        +{{ project.techStack.length - 6 }} more
+                      </span>
+                    }
+                  </div>
+                </div>
+
+                <!-- Links (if available) -->
+                @if (project.links && (project.links.github || project.links.demo)) {
+                  <div class="flex gap-3 pt-2">
+                    @if (project.links.github) {
+                      <a [href]="project.links.github" target="_blank" rel="noopener noreferrer"
+                         class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-primary dark:bg-accent-secondary text-white dark:text-black text-sm font-medium hover:scale-105 transition-transform duration-300">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Code
+                      </a>
+                    }
+                    @if (project.links.demo) {
+                      <a [href]="project.links.demo" target="_blank" rel="noopener noreferrer"
+                         class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-light-border dark:border-dark-border text-light-text-primary dark:text-dark-text-primary text-sm font-medium hover:bg-light-bg-tertiary dark:hover:bg-dark-bg-tertiary transition-all duration-300">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Live Demo
+                      </a>
+                    }
+                  </div>
                 }
               </div>
 
-              <!-- Achievements -->
-              @if (project.achievements && project.achievements.length > 0) {
-                <div class="space-y-2">
-                  @for (achievement of project.achievements; track achievement) {
-                    <div class="flex items-center text-gray-400">
-                      <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                      </svg>
-                      <span>{{ achievement }}</span>
+              <!-- Right: Achievements sidebar (2/5) -->
+              <div class="lg:col-span-2 bg-light-bg-secondary dark:bg-dark-bg-tertiary/50 p-8 md:p-10 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-light-border dark:border-dark-border">
+                @if (project.achievements && project.achievements.length > 0) {
+                  <div class="space-y-6">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-light-text-tertiary dark:text-dark-text-tertiary">Key Achievements</p>
+                    <div class="space-y-4">
+                      @for (achievement of project.achievements; track achievement) {
+                        <div class="flex items-start gap-3">
+                          <div class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-emerald/10 dark:bg-accent-emerald/20 flex items-center justify-center mt-0.5">
+                            <svg class="w-3.5 h-3.5 text-accent-emerald" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                          </div>
+                          <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">
+                            {{ achievement }}
+                          </p>
+                        </div>
+                      }
                     </div>
-                  }
-                </div>
-              }
-
-              <!-- Period -->
-              <p class="text-sm text-gray-500 italic">{{ project.period }}</p>
+                  </div>
+                }
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    }
+      }
+    </div>
   </div>
 </section>

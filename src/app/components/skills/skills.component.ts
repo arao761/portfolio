@@ -13,6 +13,16 @@ export class SkillsComponent implements OnInit {
   skills = skills;
   visibleSkills = signal<Set<number>>(new Set());
 
+  onCardHover(event: MouseEvent) {
+    const card = event.currentTarget as HTMLElement;
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  }
+
   ngOnInit() {
     this.setupIntersectionObserver();
   }
