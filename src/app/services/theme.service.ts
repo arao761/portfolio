@@ -11,9 +11,8 @@ export class ThemeService {
   constructor() {
     // Load theme from localStorage or default to light
     const savedTheme = localStorage.getItem('theme') as Theme;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    this.theme.set(savedTheme || (prefersDark ? 'dark' : 'light'));
+    this.theme.set(savedTheme || 'light');
 
     // Apply theme to document
     effect(() => {

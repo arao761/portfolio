@@ -1,5 +1,7 @@
 <!-- Booting Screen -->
-<app-booting-screen></app-booting-screen>
+@if (showBootScreen()) {
+  <app-booting-screen></app-booting-screen>
+}
 
 <!-- Theme Toggle -->
 <app-theme-toggle></app-theme-toggle>

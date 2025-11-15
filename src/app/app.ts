@@ -25,16 +25,28 @@ import { BootingScreenComponent } from './components/booting-screen/booting-scre
 })
 export class App implements OnInit {
   showContent = signal(false); // Hide content until boot sequence completes
+  showBootScreen = signal(true); // Control boot screen visibility
   private scrollY = 0;
 
   ngOnInit() {
+    // Check if user has already seen boot animation in this session
+    const hasSeenBootAnimation = sessionStorage.getItem('hasSeenBootAnimation');
+
+    if (hasSeenBootAnimation) {
+      // Skip boot animation, show content immediately
+      this.showBootScreen.set(false);
+      this.showContent.set(true);
+    } else {
+      // Show boot animation and listen for completion
+      window.addEventListener('bootComplete', () => {
+        this.showContent.set(true);
+        // Mark boot animation as seen for this session
+        sessionStorage.setItem('hasSeenBootAnimation', 'true');
+      });
+    }
+
     // Parallax scrolling effect
     this.updateParallax();
-
-    // Listen for boot complete event
-    window.addEventListener('bootComplete', () => {
-      this.showContent.set(true);
-    });
   }
 
   @HostListener('window:scroll')
