@@ -91,8 +91,8 @@ export const experiences: Experience[] = [
     location: 'Charlottesville, VA (Remote)',
     period: 'Sep. 2025 - Present',
     description: [
-      'Researching Neural Radiance Fields (NeRF) for scalable 3D scene reconstruction in mission rehearsal and disaster recovery contexts.',
-      'Developing and evaluating pipelines with Nerfstudio and COLMAP, testing robustness across multimodal inputs (drone, satellite, and ground imagery).'
+      'Building 3D scene reconstruction models using Neural Radiance Fields (NeRF) for mission planning and disaster response applications',
+      'Testing reconstruction accuracy across different image sources (drones, satellites, ground cameras) using Nerfstudio and COLMAP'
     ],
     techStack: ['NeRF', 'Nerfstudio', 'COLMAP', 'Python', '3D Reconstruction']
   },
@@ -102,10 +102,10 @@ export const experiences: Experience[] = [
     location: 'Ashburn, VA',
     period: 'June 2025 - Aug. 2025',
     description: [
-      'Designed and deployed a scalable CUDA-accelerated 3D optical flow system in PyTorch on a distributed Linux HPC cluster, improving 3D cell tracking accuracy by 30%.',
-      'Built automated data pipelines for microscopy analysis using intelligent ROI detection, reducing manual researcher intervention by 85%.',
+      'Designed and deployed a CUDA-accelerated computer vision system in PyTorch on a distributed Linux HPC cluster, to track cell movement in 3D microscopy videos, improving 3D cell tracking accuracy by 30%.',
+      'Built automated data pipelines for microscopy analysis, reducing manual researcher intervention by 85%.',
       'Developed an interactive 3D visualization platform in Python (PyVista, Matplotlib) for rendering flow fields, heatmaps, and animations of 8+ experiments.',
-      'Applied CI/CD practices to automate deployment and version control.'
+      'Applied CI/CD practices to automate deployment and version control'
     ],
     techStack: ['PyTorch', 'CUDA', 'Python', 'PyVista', 'Matplotlib', 'Linux', 'HPC', 'CI/CD']
   },
@@ -115,12 +115,12 @@ export const experiences: Experience[] = [
     location: 'Ashburn, VA',
     period: 'April 2024 - Jan. 2025',
     description: [
-      'Developed a React Native mobile app using TypeScript, with state management via Redux Toolkit and Context API, supporting real-time wildlife monitoring across offline and online modes.',
-      'Built responsive dashboards in React.js using D3.js and Chart.js, processing 500+ wildlife observations from 12 countries for data-driven conservation.',
-      'Implemented RESTful API integrations, custom React hooks, and async data fetching for efficient data flow and low-latency updates.',
-      'Collaborated with a cross-functional team in an Agile environment, conducting code reviews and maintaining version control through Git.'
+      'Built cross-platform React Native mobile app in TypeScript for wildlife conservation, supporting offline data collection and real-time syncing across 12 countries',
+      'Developed web dashboards using React.js and D3.js to visualize 500+ wildlife observations',
+      'Integrated RESTful APIs and optimized data fetching to ensure low-latency updates and efficient data flow between mobile and web platforms',
+      'Collaborated in Agile sprints, conducted code reviews, and maintained CI/CD pipelines for automated deployment'
     ],
-    techStack: ['React Native', 'TypeScript', 'Redux Toolkit', 'React.js', 'D3.js', 'Chart.js', 'REST API', 'Git']
+    techStack: ['React Native', 'TypeScript', 'React.js', 'D3.js', 'REST API', 'Git', 'CI/CD', 'Agile']
   }
 ];
 
