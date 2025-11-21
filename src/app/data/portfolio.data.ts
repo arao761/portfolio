@@ -28,58 +28,56 @@ export interface Skill {
 
 export const projects: Project[] = [
   {
-    title: 'LaneGuard: AI-Powered Driver Safety System',
+    title: 'InterviewAI: An Interview Preparation Platform',
     description:
-      'Built a lane departure warning system in Python (TensorFlow, YOLOv5) achieving 92% detection accuracy on over 500 hours of dashcam data.',
+      'Built a full-stack web application with FastAPI backend and Next.js/React frontend, integrating OpenAI GPT-4 API to generate personalized interview questions.',
     longDescription:
-      'LaneGuard is a real-time driver safety system that detects lane departures using deep learning and computer vision. It combines TensorFlow and YOLOv5 for lane detection, running at 30 FPS with Canny edge detection and polynomial curve fitting. Temporal smoothing reduced false alerts by 40%, and deployment on a Raspberry Pi achieved 200ms response times for live safety warnings.',
+      'InterviewAI is a comprehensive interview preparation platform built with a team of 4. It features a FastAPI backend and Next.js/React frontend that integrates OpenAI GPT-4 API to generate personalized interview questions based on user resumes. The platform includes an adaptive question system that adjusts difficulty in real-time, speech-to-text/text-to-speech APIs for voice-based interviews, and SQLite database for session persistence to track progress across multiple sessions.',
     techStack: [
+      'FastAPI',
+      'Next.js',
+      'React',
       'Python',
-      'TensorFlow',
-      'YOLOv5',
-      'OpenCV',
-      'Raspberry Pi',
-      'Canny Edge Detection',
-      'Polynomial Fitting'
+      'OpenAI GPT-4',
+      'SQLite',
+      'pytest',
+      'Speech-to-Text',
+      'Text-to-Speech'
     ],
     achievements: [
-      '92% detection accuracy',
-      '30 FPS real-time processing',
-      '40% false alarm reduction',
-      '200ms lane drift alert latency'
+      'GPT-4 powered question generation',
+      'Real-time difficulty adaptation',
+      'Voice-based interview support',
+      'Session persistence and progress tracking'
     ],
-    period: 'June 2024 – Aug. 2024',
+    period: 'Nov. 2025 – Present',
     links: {
-      github: '#',
-      demo: '#'
+      github: 'https://github.com/arao761/InterviewAI',
+      demo: 'https://youtu.be/ilLYM_PTssM'
     }
   },
   {
-    title: 'Robotic 3D Printed Prosthetic Finger',
+    title: 'LaneGuard: AI-Powered Driver Safety System',
     description:
-      'Prototyped a biomimetic prosthetic finger using 3D printing and EMG-based neural decoding with 95% classification precision.',
+      'Developed a real-time lane departure warning system using Python (OpenCV, NumPy), achieving 82% detection rate at 30+ FPS on dashcam footage.',
     longDescription:
-      'A functional 3D-printed prosthetic finger designed to mimic natural motion and touch. Built with TPU/PLA composite materials and powered by a custom PyTorch CNN trained on EMG data and finger position images. The system uses Raspberry Pi–Arduino communication for sensor processing and achieves 100ms actuation latency with 95% recognition accuracy.',
+      'LaneGuard is a real-time lane departure warning system that uses computer vision to detect lane departures. It features a 6-stage vision pipeline including color thresholding, perspective transform, histogram analysis, sliding window search, polynomial fitting, and geometric validation with configurable lane width constraints. Multi-layer filtering with exponential moving average, outlier detection, and spatial smoothing achieves 89% temporal stability, reducing false positives by 40% in varied driving conditions.',
     techStack: [
       'Python',
-      'PyTorch',
       'OpenCV',
       'NumPy',
-      'Pandas',
-      'Raspberry Pi',
-      'Arduino',
-      '3D Printing (TPU/PLA)'
+      'Computer Vision',
+      'Image Processing'
     ],
     achievements: [
-      '95% classification precision',
-      '100ms response latency',
-      'Dual-material 3D printed prototype',
-      '1,000+ labeled training samples'
+      '82% detection rate at 30+ FPS',
+      '6-stage vision pipeline',
+      '89% temporal stability',
+      '40% false positive reduction'
     ],
-    period: 'Dec. 2023 – Mar. 2024',
+    period: 'June 2025 – July 2025',
     links: {
-      github: '#',
-      demo: '#'
+      demo: 'https://youtu.be/ifvUyKzJBYQ'
     }
   }
 ];
@@ -91,8 +89,8 @@ export const experiences: Experience[] = [
     location: 'Charlottesville, VA (Remote)',
     period: 'Sep. 2025 - Present',
     description: [
-      'Building 3D scene reconstruction models using Neural Radiance Fields (NeRF) for mission planning and disaster response applications',
-      'Testing reconstruction accuracy across different image sources (drones, satellites, ground cameras) using Nerfstudio and COLMAP'
+      'Building 3D scene reconstruction models using Neural Radiance Fields (NeRF) technology for real-world applications in mission planning and disaster response',
+      'Testing model accuracy with different image sources including drones, satellites, and ground cameras using Nerfstudio and COLMAP frameworks'
     ],
     techStack: ['NeRF', 'Nerfstudio', 'COLMAP', 'Python', '3D Reconstruction']
   },
@@ -102,10 +100,10 @@ export const experiences: Experience[] = [
     location: 'Ashburn, VA',
     period: 'June 2025 - Aug. 2025',
     description: [
-      'Designed and deployed a CUDA-accelerated computer vision system in PyTorch on a distributed Linux HPC cluster, to track cell movement in 3D microscopy videos, improving 3D cell tracking accuracy by 30%.',
-      'Built automated data pipelines for microscopy analysis, reducing manual researcher intervention by 85%.',
-      'Developed an interactive 3D visualization platform in Python (PyVista, Matplotlib) for rendering flow fields, heatmaps, and animations of 8+ experiments.',
-      'Applied CI/CD practices to automate deployment and version control'
+      'Developed a CUDA-accelerated computer vision system in PyTorch to track cell movement in 3D microscopy videos, learning distributed computing on a Linux HPC cluster and improving tracking accuracy by 30%',
+      'Built automated data pipelines for microscopy analysis, gaining hands-on experience with workflow automation while reducing manual work by 85%',
+      'Created an interactive 3D visualization platform in Python (PyVista, Matplotlib) to display flow fields and heatmaps, learning data visualization techniques through 8+ experiments',
+      'Learned CI/CD practices by implementing automated deployment and version control workflows'
     ],
     techStack: ['PyTorch', 'CUDA', 'Python', 'PyVista', 'Matplotlib', 'Linux', 'HPC', 'CI/CD']
   },
@@ -115,10 +113,10 @@ export const experiences: Experience[] = [
     location: 'Ashburn, VA',
     period: 'April 2024 - Jan. 2025',
     description: [
-      'Built cross-platform React Native mobile app in TypeScript for wildlife conservation, supporting offline data collection and real-time syncing across 12 countries',
-      'Developed web dashboards using React.js and D3.js to visualize 500+ wildlife observations',
-      'Integrated RESTful APIs and optimized data fetching to ensure low-latency updates and efficient data flow between mobile and web platforms',
-      'Collaborated in Agile sprints, conducted code reviews, and maintained CI/CD pipelines for automated deployment'
+      'Built a cross-platform React Native mobile app in TypeScript for wildlife conservation, learning mobile development while implementing offline data collection across 12 countries',
+      'Developed web dashboards using React.js and D3.js to visualize 500+ wildlife observations, gaining experience in data visualization and frontend development',
+      'Integrated RESTful APIs and learned to optimize data fetching for efficient communication between mobile and web platforms',
+      'Participated in Agile sprints and code reviews, learning collaborative software development practices'
     ],
     techStack: ['React Native', 'TypeScript', 'React.js', 'D3.js', 'REST API', 'Git', 'CI/CD', 'Agile']
   }
