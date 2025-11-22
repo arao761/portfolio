@@ -89,8 +89,8 @@ export const experiences: Experience[] = [
     location: 'Charlottesville, VA (Remote)',
     period: 'Sep. 2025 - Present',
     description: [
-      'Collaborating with research scientists to build 3D scene reconstruction models using \textbf{Neural Radiance Fields (NeRF)} technology for real-world applications in mission planning and disaster response',
-      'Iteratively testing and validating model accuracy across diverse image sources including drones, satellites, and ground cameras using \textbf{Nerfstudio} and \textbf{COLMAP} frameworks'
+      'Collaborating with research scientists to build 3D scene reconstruction models using Neural Radiance Fields (NeRF) technology for real-world applications in mission planning and disaster response',
+      'Iteratively testing and validating model accuracy across diverse image sources including drones, satellites, and ground cameras using Nerfstudio and COLMAP frameworks'
     ],
     techStack: ['NeRF', 'Nerfstudio', 'COLMAP', 'Python', '3D Reconstruction']
   },
