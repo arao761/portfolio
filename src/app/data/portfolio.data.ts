@@ -132,7 +132,6 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/ankit-rao-781a0b290/',
   github: 'https://github.com/arao761',
   scyntic: 'https://scyntic.ai',
-  resume: 'Ankit_Rao_Resume.pdf',
   education: {
     degree: 'B.A. in Computer Science',
     school: 'University of Virginia',
