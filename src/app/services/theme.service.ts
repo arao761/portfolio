@@ -9,10 +9,11 @@ export class ThemeService {
   theme = signal<Theme>('light');
 
   constructor() {
-    // Load theme from localStorage or default to light
-    const savedTheme = localStorage.getItem('theme') as Theme;
+    // Load theme from localStorage, falling back to the system preference
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    this.theme.set(savedTheme || 'light');
+    this.theme.set(savedTheme ?? (prefersDark ? 'dark' : 'light'));
 
     // Apply theme to document
     effect(() => {

@@ -3,144 +3,83 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-white dark:bg-dark-bg-primary text-light-text-primary dark:text-dark-text-primary;
+    @apply bg-paper text-ink dark:bg-paper-dark dark:text-ink-dark;
     @apply font-sans antialiased;
-    @apply overflow-x-hidden;
+    font-feature-settings: 'ss01', 'cv11';
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  ::selection {
+    @apply bg-accent/20 dark:bg-accent-dark/25;
   }
 }
 
-/* Custom global styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer components {
+  /* Small-caps mono label used for section headings and dates */
+  .label-mono {
+    @apply font-mono text-xs uppercase tracking-[0.18em] text-ink-tertiary dark:text-ink-dark-tertiary;
+  }
+
+  /* Underlined text link with accent hover */
+  .link {
+    @apply text-ink dark:text-ink-dark underline decoration-ink-tertiary/60 dark:decoration-ink-dark-tertiary/60 decoration-1 underline-offset-4;
+    transition: color 200ms ease, text-decoration-color 200ms ease;
+  }
+
+  .link:hover {
+    @apply text-accent dark:text-accent-dark decoration-accent dark:decoration-accent-dark;
+  }
+
+  /* Quiet link: no underline until hover (for meta rows) */
+  .link-quiet {
+    @apply text-ink-secondary dark:text-ink-dark-secondary no-underline;
+    transition: color 200ms ease;
+  }
+
+  .link-quiet:hover {
+    @apply text-accent dark:text-accent-dark;
+  }
+
+  .hairline {
+    @apply border-t border-rule dark:border-rule-dark;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* Subtle grain texture for both themes */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.015"/></svg>');
-  z-index: 50;
-  opacity: 0.4;
-}
-
-.dark body::after {
-  opacity: 0.15;
-}
-
-/* Modern heading underline - adapts to theme */
-.underline-gradient {
-  position: relative;
-}
-.underline-gradient::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.5rem;
-  width: 3rem;
-  height: 2px;
-  background: linear-gradient(90deg, #18181b 0%, #18181b 100%);
-  border-radius: 2px;
-}
-
-.dark .underline-gradient::after {
-  background: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
-}
-
-/* Smooth section entrance */
-.section-reveal {
+/* Scroll-triggered reveal */
+.reveal {
   opacity: 0;
-  transform: translateY(30px);
-  animation: sectionIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(14px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes sectionIn {
-  to {
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    transition: none;
   }
 }
 
-/* Parallax utilities */
-.parallax-slow {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.parallax-medium {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.parallax-fast {
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Custom scrollbar - theme aware */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-light-bg-secondary dark:bg-dark-bg-primary;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 dark:bg-gray-700;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-600;
-}
-
-/* Glassmorphism utility */
-.glass {
-  @apply bg-white/80 dark:bg-dark-bg-tertiary/80;
-  @apply backdrop-blur-xl border border-light-border/50 dark:border-dark-border/50;
-}
-
-/* Spotlight effect for cards */
-.card-spotlight {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-spotlight::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.06),
-    transparent 40%
-  );
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-
-.card-spotlight:hover::before {
-  opacity: 1;
-}
-
-.dark .card-spotlight::before {
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.04),
-    transparent 40%
-  );
-}
-
-/* Smooth transitions for theme switching */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
+  @apply bg-rule dark:bg-rule-dark;
+  border-radius: 4px;
 }

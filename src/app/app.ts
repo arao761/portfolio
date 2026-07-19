@@ -1,67 +1,42 @@
-import { Component, OnInit, signal, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit } from '@angular/core';
 import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
 import { HeroComponent } from './components/hero/hero.component';
-import { ProjectsComponent } from './components/projects/projects.component';
 import { ExperienceComponent } from './components/experience/experience.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { EducationComponent } from './components/education/education.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { BootingScreenComponent } from './components/booting-screen/booting-screen.component';
 
 @Component({
   selector: 'app-root',
   imports: [
-    CommonModule,
     ThemeToggleComponent,
     HeroComponent,
-    ProjectsComponent,
     ExperienceComponent,
+    ProjectsComponent,
+    EducationComponent,
     SkillsComponent,
-    ContactComponent,
-    BootingScreenComponent
+    ContactComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
-  showContent = signal(false); // Hide content until boot sequence completes
-  showBootScreen = signal(true); // Control boot screen visibility
-  private scrollY = 0;
+export class App implements AfterViewInit {
+  ngAfterViewInit() {
+    const elements = document.querySelectorAll('.reveal');
 
-  ngOnInit() {
-    // Check if user has already seen boot animation in this session
-    const hasSeenBootAnimation = sessionStorage.getItem('hasSeenBootAnimation');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
 
-    if (hasSeenBootAnimation) {
-      // Skip boot animation, show content immediately
-      this.showBootScreen.set(false);
-      this.showContent.set(true);
-    } else {
-      // Show boot animation and listen for completion
-      window.addEventListener('bootComplete', () => {
-        this.showContent.set(true);
-        // Mark boot animation as seen for this session
-        sessionStorage.setItem('hasSeenBootAnimation', 'true');
-      });
-    }
-
-    // Parallax scrolling effect
-    this.updateParallax();
-  }
-
-  @HostListener('window:scroll')
-  onScroll() {
-    this.updateParallax();
-  }
-
-  private updateParallax() {
-    this.scrollY = window.scrollY;
-    const parallaxElements = document.querySelectorAll('[data-parallax]');
-
-    parallaxElements.forEach((el) => {
-      const speed = parseFloat((el as HTMLElement).dataset['parallax'] || '0');
-      const yPos = -(this.scrollY * speed);
-      (el as HTMLElement).style.transform = `translateY(${yPos}px)`;
-    });
+    elements.forEach((el) => observer.observe(el));
   }
 }
